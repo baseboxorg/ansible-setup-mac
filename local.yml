@@ -1,6 +1,6 @@
 ---
-- hosts: localhost
-  user: "{{user_name}}"
+- hosts: 127.0.0.1
+  connection: local
   vars:
 
     home_dir: "/Users/{{user_name}}"
