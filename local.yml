@@ -3,10 +3,126 @@
   connection: local
   vars:
 
+    home_dir: "/Users/{{user_name}}"
+    brew_dir: /usr/local
+
+    casks: # .dmg, .app, .zip type applications via brew-cask
+      - google-chrome
+      - firefox
+      - intellij-idea
+    sudo_casks:
+      - virtualbox
+      - java6
+      - java7
+    kegs:
+      - maven31
+    homebrew_paths:
+      - "{{brew_dir}}"
+      - "{{brew_dir}}/Cellar"
+      - "{{brew_dir}}/Library"
+      - /Library/Caches/Homebrew
+      - /Library/Caches/Homebrew/Formula
+      - /opt/homebrew-cask
+
   tasks:
 
   - name: Gather mac facts
     action: mac_facts
 
-  - name: Greb the wls file
+  # - name: Parition disks
+  #   command: diskutil resizeVolume {{mac_disk}} {{ dev_partition.target_size }}G jhfs+ 'VBMS Dev' 40G
+  #   when: is_partitioned == "false"
+
+  - name: Make sure Homebrew directory exists
+    file: 
+      path={{brew_dir}}
+      state=directory
+      mode=0775
+      group=admin
+    sudo: yes
+
+  # - name: Create symlink for homebrew
+  #   command: ln -s {{brew_dir}} /usr/local creates={{brew_dir}}
+  #   sudo: yes
+
+  - name: Install Homebrew with git
+    git: 
+      repo=https://github.com/Homebrew/homebrew.git
+      dest='{{brew_dir}}'
+
+  - name: Hard-reset the Homebrew Library (resets file permissions)
+    command: git reset --hard chdir={{brew_dir}}/Library
+
+  - name: Update Homebrew
+    homebrew: update_homebrew=yes
+
+  - name: Tapping caskroom/cask
+    homebrew_tap: tap=caskroom/cask state=present
+
+  - name: Tapping caskroom/versions
+    homebrew_tap: tap=caskroom/versions state=present
+
+  - name: Tapping homebrew/versions
+    homebrew_tap: tap=homebrew/versions state=present
+
+  - name: Set permissions for multiple users
+    file: 
+      path={{item}}
+      mode=0775
+      owner=root
+      group=admin
+      recurse=yes
+      state=directory
+    sudo: yes
+    with_items: homebrew_paths
+
+  - name: Fix ACL permissions for multiple users
+    sudo: yes
+    command: 'chmod +a "group:admin allow list,add_file,search,delete,add_subdirectory,delete_child,readattr,writeattr,readextattr,writeextattr,readsecurity,file_inherit,directory_inherit" {{ item }}'
+    with_items: homebrew_paths
+
+  - name: Install brew-cask
+    homebrew: name=brew-cask state=present
+
+  - name: Installing casks
+    homebrew_cask: name={{item}} state=present
+    with_items: casks
+
+  - name: Installing casks with sudo (Java and VirtualBox)
+    homebrew_cask: name={{item}} state=present
+    with_items: sudo_casks
+    sudo: yes
+
+  - name: Installing kegs
+    homebrew: name={{item}} state=present
+    with_items: kegs
+
+  - name: Copying the RTC Client
+    script: scripts/grab_jazz
+
+  - name: Installing RTC Client
+    unarchive: creates="/Applications/jazz/client/eclipse/artifacts.xml" src={{home_dir}}/Downloads/jazz.zip dest=/Applications/ copy=no
+
+  - name: Copying Weblogic jar
     script: scripts/grab_wls
+
+  - name: Copying VBMS VM
+    script: scripts/grab_vm
+
+  - name: Copy the hosts file
+    copy: src=files/hosts dest=/etc/hosts owner=root group=wheel mode=644 force=yes
+    sudo: yes
+
+  - name: Copy the .profile file
+    copy: src=files/.profile dest={{home_dir}}/.profile owner={{user_name}} mode=640 force=yes
+
+  - name: Copy the .mavenrc file
+    copy: src=files/.mavenrc dest={{home_dir}}/.mavenrc owner={{user_name}} mode=640 force=yes
+
+  - name: Import the virtual machine
+    script: files/setup_vm
+
+  #- name: Download SoapUI
+  #  get_url: url=http://downloads.sourceforge.net/project/soapui/soapui/5.0.0/SoapUI-5.0.0.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsoapui%2Ffiles%2F&ts=1416234054&use_mirror=softlayer-dal
+  #           dest=~/Downloads/soapui.dmg
+

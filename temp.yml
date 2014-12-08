@@ -97,14 +97,17 @@
     homebrew: name={{item}} state=present
     with_items: kegs
 
+  - name: Copying the RTC Client
+  	script: scripts/grab_jazz
+
   - name: Installing RTC Client
-    unarchive: creates="/Applications/jazz/client/eclipse/artifacts.xml" src=files/jazz.zip dest=/Applications/
+    unarchive: creates="/Applications/jazz/client/eclipse/artifacts.xml" src={{home_dir}}/Downloads/jazz.zip dest=/Applications/ copy=no
 
   - name: Copying Weblogic jar
-    copy: src=files/wls1036_generic.jar dest={{home_dir}}/Downloads/wls1036_generic.jar force=no
+    script: scripts/grab_wls
 
   - name: Copying VBMS VM
-    copy: src=files/vbms_nwq.ova dest={{home_dir}}/Downloads/vbms_nwq.ova force=no
+    script: scripts/grab_vm
 
   - name: Copy the hosts file
     copy: src=files/hosts dest=/etc/hosts owner=root group=wheel mode=644 force=yes
