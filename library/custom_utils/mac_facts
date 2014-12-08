@@ -6,8 +6,8 @@ USER_NAME=`users`
 # format into JSON output
 cat <<EOF
 {
-	"ansible_facts" : {
-		"user_name" : "$USER_NAME"
-	}
+    "ansible_facts" : {
+        "user_name" : "$USER_NAME"
+    }
 }
 EOF
