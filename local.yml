@@ -1,5 +1,5 @@
 ---
-- hosts: "{{hosts}}"
+- hosts: localhost
   user: "{{user_name}}"
   vars:
 
