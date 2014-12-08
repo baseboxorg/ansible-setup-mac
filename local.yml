@@ -98,26 +98,26 @@
     with_items: kegs
 
   - name: Installing RTC Client
-    unarchive: creates="/Applications/jazz/client/eclipse/artifacts.xml" src=jazz.zip dest=/Applications/
+    unarchive: creates="/Applications/jazz/client/eclipse/artifacts.xml" src=files/jazz.zip dest=/Applications/
 
   - name: Copying Weblogic jar
-    copy: src=wls1036_generic.jar dest={{home_dir}}/Downloads/wls1036_generic.jar force=no
+    copy: src=files/wls1036_generic.jar dest={{home_dir}}/Downloads/wls1036_generic.jar force=no
 
   - name: Copying VBMS VM
-    copy: src=vbms_nwq.ova dest={{home_dir}}/Downloads/vbms_nwq.ova force=no
+    copy: src=files/vbms_nwq.ova dest={{home_dir}}/Downloads/vbms_nwq.ova force=no
 
   - name: Copy the hosts file
-    copy: src=hosts dest=/etc/hosts owner=root group=wheel mode=644 force=yes
+    copy: src=files/hosts dest=/etc/hosts owner=root group=wheel mode=644 force=yes
     sudo: yes
 
   - name: Copy the .profile file
-    copy: src=.profile dest={{home_dir}}/.profile owner={{user_name}} mode=640 force=yes
+    copy: src=files/.profile dest={{home_dir}}/.profile owner={{user_name}} mode=640 force=yes
 
   - name: Copy the .mavenrc file
-    copy: src=.mavenrc dest={{home_dir}}/.mavenrc owner={{user_name}} mode=640 force=yes
+    copy: src=files/.mavenrc dest={{home_dir}}/.mavenrc owner={{user_name}} mode=640 force=yes
 
   - name: Import the virtual machine
-    script: setup_vm
+    script: files/setup_vm
 
   #- name: Download SoapUI
   #  get_url: url=http://downloads.sourceforge.net/project/soapui/soapui/5.0.0/SoapUI-5.0.0.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsoapui%2Ffiles%2F&ts=1416234054&use_mirror=softlayer-dal

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+IDENT=`VBoxManage list vms | grep vbms`
+
+if [ -n "$IDENT" ] # IDENT not null
+then
+	echo "Virtual machine is already on the target."
+	exit 0
+else # IDENT is null
+	VBoxManage import ~/Downloads/vbms_nwq.ova
+
+	IDENT=$(VBoxManage list vms | grep vbms | awk '{print $1}')
+
+	IDENT=${IDENT#\"}
+	IDENT=${IDENT%*\"}
+
+	$(VBoxManage modifyvm $IDENT --nic2 hostonly)
+fi
