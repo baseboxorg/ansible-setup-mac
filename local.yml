@@ -29,7 +29,7 @@
     action: mac_facts
   
   - name: simple test
-    shell: say "OH hello!"
+    command: say "OH hello!"
 
   - name: install something with brew
     homebrew_cask: name={{item}} state=present
