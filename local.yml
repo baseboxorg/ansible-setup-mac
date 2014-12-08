@@ -1,5 +1,5 @@
 ---
-- hosts: lcoalhost
+- hosts: localhost
   user: "{{user_name}}"
   vars:
 
