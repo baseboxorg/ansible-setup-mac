@@ -28,9 +28,6 @@
   - name: Gather mac facts
     action: mac_facts
   
-  - name: simple test
-    command: say "OH hello!"
-
   - name: install something with brew
     homebrew_cask: name={{item}} state=present
     with_items: casks
