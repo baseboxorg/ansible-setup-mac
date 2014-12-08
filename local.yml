@@ -31,3 +31,7 @@
   - name: simple test
     shell: say "OH hello!"
 
+  - name: install something with brew
+    homebrew_cask: name={{item}} state=present
+    with_items: casks
+
