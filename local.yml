@@ -24,6 +24,9 @@
       - /opt/homebrew-cask
 
   tasks:
+
+  - name: Gather mac facts
+    action: mac_facts
   
   - name: simple test
     shell: say "OH hello!"
