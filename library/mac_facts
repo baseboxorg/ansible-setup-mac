@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# facts to be sent
+USER_NAME=`users`
+
+# format into JSON output
+cat <<EOF
+{
+	"ansible_facts" : {
+		"user_name" : "$USER_NAME"
+	}
+}
+EOF
