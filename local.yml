@@ -1,0 +1,30 @@
+---
+- hosts: lcoalhost
+  user: "{{user_name}}"
+  vars:
+
+    home_dir: "/Users/{{user_name}}"
+    brew_dir: /usr/local
+
+    casks:
+      - google-chrome
+      - firefox
+    sudo_casks:
+      - virtualbox
+      - java6
+      - java7
+    kegs:
+      - maven31
+    homebrew_paths:
+      - "{{brew_dir}}"
+      - "{{brew_dir}}/Cellar"
+      - "{{brew_dir}}/Library"
+      - /Library/Caches/Homebrew
+      - /Library/Caches/Homebrew/Formula
+      - /opt/homebrew-cask
+
+  tasks:
+  
+  - name: simple test
+    shell: say "OH hello!"
+
