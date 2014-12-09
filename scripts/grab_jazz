@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd /tmp/ansible_temp_scripts/
-./gdown.pl https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6dGEzRUdSeDk2ZVk ~/Downloads/jazz.zip
+./gdown.pl https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6dGEzRUdSeDk2ZVk
