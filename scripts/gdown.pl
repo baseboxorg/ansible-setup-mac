@@ -21,7 +21,7 @@ $FILENAME='gdown' if $FILENAME eq '';
 
 execute_command();
 
-while (-s $FILENAME < 100000) { # only if the file isn't the download yet
+# while (-s $FILENAME < 100000) { # only if the file isn't the download yet
     open fFILENAME, '<', $FILENAME;
     $check=0;
     foreach (<fFILENAME>) {
@@ -51,7 +51,7 @@ while (-s $FILENAME < 100000) { # only if the file isn't the download yet
     $URL=~s/confirm=([^;&]+)/confirm=$confirm/ if $confirm ne '';
 
     execute_command();
-}
+# }
 
 sub execute_command() {
     $COMMAND="wget --load-cookie $TEMP/cookie.txt --save-cookie $TEMP/cookie.txt \"$URL\"";
