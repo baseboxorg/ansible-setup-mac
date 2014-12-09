@@ -6,6 +6,8 @@
     home_dir: "/Users/{{user_name}}"
     brew_dir: /usr/local
 
+    rtc_args: "https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6dGEzRUdSeDk2ZVk ~/Downloads/jazz.zip"
+
     casks: # .dmg, .app, .zip type applications via brew-cask
       - google-chrome
       - firefox
@@ -30,4 +32,4 @@
     action: mac_facts
 
   - name: Copying the RTC Client
-    script: ./scripts/gdown.pl https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6dGEzRUdSeDk2ZVk ~/Downloads/jazz.zip creates=~/Downloads/jazz.zip
+    script: ./scripts/gdown.pl {{rtc_args}} creates=~/Downloads/jazz.zip
