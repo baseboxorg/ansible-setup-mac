@@ -31,5 +31,8 @@
   - name: Gather mac facts
     action: mac_facts
 
+  - name: Copy temporary scripts
+    copy: src=scripts dest=/tmp/ansible_temp_scripts owner={{user_name}} mode="a+x"
+
   - name: Copying the RTC Client
-    script: ./scripts/gdown.pl "{{rtc_args}}" creates=~/Downloads/jazz.zip
+    shell: /tmp/ansible_temp_scripts/gdown.pl "{{rtc_args}}"
