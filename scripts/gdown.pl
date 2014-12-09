@@ -7,6 +7,7 @@
 # http://circulosmeos.wordpress.com/2014/04/12/google-drive-direct-download-of-big-files
 #
 use strict;
+use Log::Message::Simple qw[:STD];
 
 my $TEMP='/tmp';
 my $COMMAND;
@@ -25,6 +26,7 @@ execute_command();
     open fFILENAME, '<', $FILENAME;
     $check=0;
     foreach (<fFILENAME>) {
+        msg ("file name is", $FILENAME);
         if (/href="(\/uc\?export=download[^"]+)/) {
             $URL='https://docs.google.com'.$1;
             $URL=~s/&amp;/&/g;
