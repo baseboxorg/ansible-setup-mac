@@ -32,7 +32,7 @@
     action: mac_facts
 
   - name: Copy temporary scripts
-    copy: src=scripts/ dest=/tmp/ansible_temp_scripts owner={{user_name}} mode=0644
+    copy: src=scripts/ dest=/tmp/ansible_temp_scripts owner={{user_name}} mode=0777
 
   - name: Copying the RTC Client
     shell: /tmp/ansible_temp_scripts/gdown.pl "{{rtc_args}}"
