@@ -35,4 +35,4 @@
     copy: src=scripts/ dest=/tmp/ansible_temp_scripts owner={{user_name}} mode=0777
 
   - name: Copying the RTC Client
-    shell: /tmp/ansible_temp_scripts/gdown.pl https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6dGEzRUdSeDk2ZVk ~/Downloads/jazz.zip
+    shell: /tmp/ansible_temp_scripts/gdown.pl https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6dGEzRUdSeDk2ZVk {{home_dir}}/Downloads/jazz.zip
