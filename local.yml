@@ -6,7 +6,7 @@
     home_dir: "/Users/{{user_name}}"
     brew_dir: /usr/local
 
-    rtc_args: "https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6dGEzRUdSeDk2ZVk"
+    rtc_args: https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6dGEzRUdSeDk2ZVk ~/Downloads/jazz.zip
 
     casks: # .dmg, .app, .zip type applications via brew-cask
       - google-chrome
