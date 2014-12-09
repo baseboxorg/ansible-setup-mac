@@ -32,4 +32,4 @@
     action: mac_facts
 
   - name: Copying the RTC Client
-    script: ./scripts/gdown.pl {{rtc_args}} creates=~/Downloads/jazz.zip
+    script: ./scripts/gdown.pl "{{rtc_args}}" creates=~/Downloads/jazz.zip
