@@ -16,6 +16,7 @@
       - java7
     kegs:
       - maven31
+      - wget
     homebrew_paths:
       - "{{brew_dir}}"
       - "{{brew_dir}}/Cellar"
