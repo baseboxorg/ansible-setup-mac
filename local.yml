@@ -46,10 +46,10 @@
   #   command: ln -s {{brew_dir}} /usr/local creates={{brew_dir}}
   #   sudo: yes
 
-  - name: Install Homebrew with git
-    git: 
-      repo=https://github.com/Homebrew/homebrew.git
-      dest='{{brew_dir}}'
+  # - name: Install Homebrew with git
+  #   git: 
+  #     repo=https://github.com/Homebrew/homebrew.git
+  #     dest='{{brew_dir}}'
 
   - name: Hard-reset the Homebrew Library (resets file permissions)
     command: git reset --hard chdir={{brew_dir}}/Library
