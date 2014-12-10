@@ -99,16 +99,16 @@
     with_items: kegs
 
   - name: Downloading the RTC Client
-    script: scripts/grab_jazz
+    script: scripts/grab_jazz creates=~/Downloads/jazz.zip
 
   - name: Installing RTC Client
     unarchive: creates="/Applications/jazz/client/eclipse/artifacts.xml" src={{home_dir}}/Downloads/jazz.zip dest=/Applications/ copy=no
 
   - name: Downloading Weblogic jar
-    script: scripts/grab_wls
+    script: scripts/grab_wls creates=~/Downloads/wls1036_generic.jar
 
   - name: Downloading VBMS VM
-    script: scripts/grab_vm
+    script: scripts/grab_vm creates=~/Downloads/vbms_nwq.ova
 
   - name: Copy the hosts file
     copy: src=files/hosts dest=/etc/hosts owner=root group=wheel mode=644 force=yes
