@@ -35,4 +35,4 @@
   #   copy: src=scripts/ dest=/tmp/ansible_temp_scripts owner={{user_name}} mode=0777
 
   - name: Copying the RTC Client
-    script: scripts/gdown '{{rtc_args}}'
+    script: scripts/gdown.pl '{{rtc_args}}'
