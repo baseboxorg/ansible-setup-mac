@@ -31,8 +31,8 @@
   - name: Gather mac facts
     action: mac_facts
 
-  - name: Copy temporary scripts
-    copy: src=scripts/gdown.pl dest=~/scripts/gdown.pl owner={{user_name}} mode=0777
+  # - name: Copy temporary scripts
+  #   copy: src=scripts/gdown.pl dest=~/scripts/gdown.pl owner={{user_name}} mode=0777
 
   - name: Copying the RTC Client
     script: scripts/grab_jazz
