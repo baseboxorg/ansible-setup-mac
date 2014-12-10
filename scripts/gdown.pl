@@ -19,15 +19,13 @@ die "\n./gdown.pl 'gdrive file url' [desired file name]\n\n" if $URL eq '';
 my $FILENAME=shift;
 $FILENAME='gdown' if $FILENAME eq '';
 
-print "Filename is $FILENAME\n";
-
-execute_command();
+# execute_command();
 
 while (-s $FILENAME < 100000) { # only if the file isn't the download yet
     open fFILENAME, '<', $FILENAME;
     $check=0;
+    print "URL is $URL\n";
     foreach (<fFILENAME>) {
-        print "Filename is $FILENAME\n";
         if (/href="(\/uc\?export=download[^"]+)/) {
             $URL='https://docs.google.com'.$1;
             $URL=~s/&amp;/&/g;
