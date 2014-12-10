@@ -121,7 +121,7 @@
     copy: src=files/.mavenrc dest={{home_dir}}/.mavenrc owner={{user_name}} mode=640 force=yes
 
   - name: Import the virtual machine
-    script: files/setup_vm
+    script: scripts/setup_vm
 
   - name: Run wls install script
     script: scripts/wls_install
