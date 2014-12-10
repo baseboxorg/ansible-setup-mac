@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd ~/Downloads
-java -d64 -Dspace.detection=false -Xmx1024m -jar wls1036_generic.jar && rm wls1036_generic.jar
+java -d64 -Dspace.detection=false -Xmx1024m -jar wls1036_generic.jar
