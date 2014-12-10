@@ -22,11 +22,11 @@ $FILENAME='gdown' if $FILENAME eq '';
 
 execute_command();
 
-# while (-s $FILENAME < 100000) { # only if the file isn't the download yet
+while (-s $FILENAME < 100000) { # only if the file isn't the download yet
     open fFILENAME, '<', $FILENAME;
     $check=0;
     foreach (<fFILENAME>) {
-        msg ("file name is", $FILENAME);
+        print "file name is $FILENAME";
         if (/href="(\/uc\?export=download[^"]+)/) {
             $URL='https://docs.google.com'.$1;
             $URL=~s/&amp;/&/g;
@@ -53,7 +53,7 @@ execute_command();
     $URL=~s/confirm=([^;&]+)/confirm=$confirm/ if $confirm ne '';
 
     execute_command();
-# }
+}
 
 sub execute_command() {
     $COMMAND="wget --load-cookie $TEMP/cookie.txt --save-cookie $TEMP/cookie.txt \"$URL\"";
