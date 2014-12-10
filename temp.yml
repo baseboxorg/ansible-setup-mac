@@ -97,17 +97,17 @@
     homebrew: name={{item}} state=present
     with_items: kegs
 
-  - name: Copying the RTC Client
-    script: ./scripts/gdown.pl https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6dGEzRUdSeDk2ZVk ~/Downloads/jazz.zip creates=~/Downloads/jazz.zip
+  - name: Downloading the RTC Client
+    script: scripts/grab_jazz
 
   - name: Installing RTC Client
     unarchive: creates="/Applications/jazz/client/eclipse/artifacts.xml" src={{home_dir}}/Downloads/jazz.zip dest=/Applications/ copy=no
 
-  - name: Copying Weblogic jar
-    script: ./scripts/gdown.pl https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6OG9iNC01TjRQN28 ~/Downloads/wls1036_generic.jar creates=~/Downloads/wls1036_generic.jar
+  - name: Downloading Weblogic jar
+    script: scripts/grab_wls
 
-  - name: Copying VBMS VM
-    script: ./scripts/gdown.pl https://docs.google.com/uc?export=download&id=0B6ViKrNN-Ja6Y2RkTHRlUXZadW8 ~/Downloads/vbms_nwq.ova creates=~/Downloads/vbms_nwq.ova
+  - name: Downloading VBMS VM
+    script: scripts/grab_vm
 
   - name: Copy the hosts file
     copy: src=files/hosts dest=/etc/hosts owner=root group=wheel mode=644 force=yes
