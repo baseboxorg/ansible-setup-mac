@@ -21,11 +21,13 @@ $FILENAME='gdown' if $FILENAME eq '';
 
 # execute_command();
 
+print "URL is $URL\n";
+
 while (-s $FILENAME < 100000) { # only if the file isn't the download yet
     open fFILENAME, '<', $FILENAME;
     $check=0;
-    print "URL is $URL\n";
     foreach (<fFILENAME>) {
+        print "URL is $URL\n";
         if (/href="(\/uc\?export=download[^"]+)/) {
             $URL='https://docs.google.com'.$1;
             $URL=~s/&amp;/&/g;
