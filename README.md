@@ -30,3 +30,8 @@ cd /tmp && rm -rf ansible-setup-mac && \
   git clone https://github.com/sparcedge/ansible-setup-mac && cd ansible-setup-mac \
   && ansible-playbook vbms.yml -i hosts -K && cd .. && rm -rf ansible-setup-mac
 ```
+
+Questions
+---
+
+Contact Julian Coy at julian.coy@sparcedge.com
