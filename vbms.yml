@@ -105,7 +105,7 @@
     unarchive: creates="/Applications/jazz/client/eclipse/artifacts.xml" src={{home_dir}}/Downloads/jazz.zip dest=/Applications/ copy=no
 
   - name: Downloading Weblogic jar
-    script: scripts/grab_wls creates=~/Downloads/wls1036_generic.jar
+    script: scripts/grab_wls creates=~/Downloads/fmw_12.1.3.0.0_wls.jar.jar
 
   - name: Downloading VBMS VM
     script: scripts/grab_vm creates=~/Downloads/vbms_nwq.ova
@@ -123,8 +123,8 @@
   - name: Import the virtual machine
     script: scripts/setup_vm
 
-  # - name: Run wls install script
-  #   script: scripts/wls_install
+  - name: Run wls install script
+    script: scripts/wls_install
 
   #- name: Download SoapUI
   #  get_url: url=http://downloads.sourceforge.net/project/soapui/soapui/5.0.0/SoapUI-5.0.0.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsoapui%2Ffiles%2F&ts=1416234054&use_mirror=softlayer-dal
